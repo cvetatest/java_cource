@@ -15,8 +15,8 @@ public class MyFirstProgram {
     Point p1 = new Point(1, 2);
     Point p2 = new Point(4, 3);
     double p;
-    p=Point.distance(p1,p2);
-    System.out.println("Расстояние между точками ( " + p1.x + "," + p1.y + ")" + " и " + "( " + p2.x + "," + p2.y + ")" + "=" + p);
+    //p= p1.distance(p2);
+    System.out.println("Расстояние между точками ( " + p1.x + "," + p1.y + ")" + " и " + "( " + p2.x + "," + p2.y + ")" + "=" + p1.distance(p2));
   }
 
   public static void hello(String somebody) {
