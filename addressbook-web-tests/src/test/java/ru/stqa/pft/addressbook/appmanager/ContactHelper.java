@@ -5,20 +5,21 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import ru.stqa.pft.addressbook.model.ContactData;
 
-public class ContactHelper  extends HelperBase{
+public class ContactHelper extends HelperBase {
 
   public ContactHelper(WebDriver wd) {
     super(wd);
   }
+
   public void submitContactCreation() {
-   click(By.xpath("//div[@id='content']/form/input[21]"));
+    click(By.xpath("//div[@id='content']/form/input[21]"));
   }
 
   public void fillContactForm(ContactData contactData) {
-    type(By.name("firstname"),contactData.getFirstname());
-    type(By.name("lastname"),contactData.getLastname());
-    type(By.name("address"),contactData.getAddress());
-    type(By.name("mobile"),contactData.getPhone());
+    type(By.name("firstname"), contactData.getFirstname());
+    type(By.name("lastname"), contactData.getLastname());
+    type(By.name("address"), contactData.getAddress());
+    type(By.name("mobile"), contactData.getPhone());
   }
 
   public void gotoNewContact() {
@@ -43,5 +44,15 @@ public class ContactHelper  extends HelperBase{
 
   public void submitEditContact() {
     click(By.xpath("//div[@id='content']/form/input[22]"));
+  }
+
+  public void createContact(ContactData contact) {
+    gotoNewContact();
+    fillContactForm(contact);
+    submitContactCreation();
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.name("selected[]"));
   }
 }
