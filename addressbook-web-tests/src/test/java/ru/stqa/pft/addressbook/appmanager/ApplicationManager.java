@@ -39,7 +39,9 @@ public class ApplicationManager {
     sessionHelper.login("admin", "secret");
   }
 
-
+public void wait_sec(){
+  wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+}
 
   public void logout() {
     wd.findElement(By.linkText("Logout")).click();

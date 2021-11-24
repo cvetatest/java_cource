@@ -2,8 +2,14 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.GroupData;
+
+import java.text.ParsePosition;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactHelper extends HelperBase {
 
@@ -26,7 +32,7 @@ public class ContactHelper extends HelperBase {
     click(By.linkText("add new"));
   }
 
-  public void selectContact() {
+  public void selectContact(int i) {
     click(By.name("selected[]"));
   }
 
@@ -55,4 +61,30 @@ public class ContactHelper extends HelperBase {
   public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
   }
-}
+
+  public int getContactCount() {
+    return wd.findElements(By.name("selected[]")).size();
+  }
+
+  public List<ContactData> getContactList() {
+    List<ContactData> contacts = new ArrayList<ContactData>();
+    List<WebElement> elements = wd.findElements(By.name("entry"));
+   // List<WebElement> cells = elements.findElements(By.tagName("td"));
+
+
+    for(WebElement element:elements){
+      int id= Integer.parseInt(element.findElement(By.xpath("./td/input")).getAttribute("value"));
+      List<WebElement> cells = element.findElements(By.tagName("td"));
+
+      for(WebElement cell:cells){
+        String firstname=cell.findElement(By.xpath("//*[@id=\"maintable\"]/tbody/tr/td[3]")).getText();
+        String lastname=cell.findElement(By.xpath("//*[@id=\"maintable\"]/tbody/tr/td[2]")).getText();
+        ContactData contact=new ContactData(id, firstname, lastname,null,null);
+        contacts.add(contact);
+        }
+      }
+    return contacts;
+    }
+
+  }
+
