@@ -53,15 +53,16 @@ public void wait_sec(){
 
 
 
-  public ContactHelper getContactHelper() {
+  public ContactHelper contact() {
     return contactHelper;
   }
 
-  public NavigationHelper getNavigationHelper() {
+  public NavigationHelper goTo() {
     return navigationHelper;
   }
 
-  public GroupHelper getGroupHelper() {
+
+  public GroupHelper group() {
     return groupHelper;
   }
 }

@@ -3,27 +3,14 @@ package ru.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class ContactData {
-  private int id;
-  private final String firstname;
-  private final String lastname;
-  private final String address;
-  private final String phone;
+  private int id=Integer.MAX_VALUE;
+  private  String firstname;
+  private  String lastname;
+  private  String address;
+  private  String phone;
 
-
-  public ContactData(String firstname, String lastname, String address, String phone) {
-    this.id=Integer.MAX_VALUE;
-    this.firstname = firstname;
-    this.lastname = lastname;
-    this.address = address;
-    this.phone = phone;
-  }
-
-  public ContactData(int id,String firstname, String lastname, String address, String phone) {
-    this.id=id;
-    this.firstname = firstname;
-    this.lastname = lastname;
-    this.address = address;
-    this.phone = phone;
+  public int getId() {
+    return id;
   }
 
   public String getFirstname() {
@@ -42,13 +29,31 @@ public class ContactData {
     return phone;
   }
 
-  public void setId(int id) {
+  public ContactData withId(int id) {
     this.id = id;
+    return this;
+  }
+  public ContactData withFirstname(String firstname) {
+    this.firstname = firstname;
+    return this;
   }
 
-  public int getId() {
-    return id;
+  public ContactData withLastname(String lastname) {
+    this.lastname = lastname;
+    return this;
   }
+
+  public ContactData withAddress(String address) {
+    this.address = address;
+    return this;
+  }
+
+  public ContactData withPhone(String phone) {
+    this.phone = phone;
+    return this;
+  }
+
+
 
   @Override
   public String toString() {
@@ -59,18 +64,17 @@ public class ContactData {
             '}';
   }
 
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ContactData that = (ContactData) o;
-    return Objects.equals(firstname, that.firstname) && Objects.equals(lastname, that.lastname);
+    return id == that.id && Objects.equals(firstname, that.firstname) && Objects.equals(lastname, that.lastname);
   }
-
-
 
   @Override
   public int hashCode() {
-    return Objects.hash(firstname, lastname);
+    return Objects.hash(id, firstname, lastname);
   }
 }
