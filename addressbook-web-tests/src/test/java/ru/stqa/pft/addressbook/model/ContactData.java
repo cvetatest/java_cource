@@ -20,7 +20,7 @@ public class ContactData {
   @Column(name="firstname")
   private String firstname;
   @Expose
-  @Column(name="lasttname")
+  @Column(name="lastname")
   private String lastname;
   @Expose
   @Column(name="address")
@@ -28,6 +28,7 @@ public class ContactData {
   private String address;
   @Expose
   @Column(name="email")
+  @Type(type="text")
   private String email;
   @Expose
   @Transient
@@ -51,10 +52,12 @@ public class ContactData {
   @Transient
   private String allPhones;
   @Expose
+  @Transient
   @Column(name="photo")
   @Type(type="text")
   private String photo;
 
+  @Transient
   public File getPhoto() {
     return new File(photo);
   }
@@ -69,11 +72,12 @@ public class ContactData {
     return allEmail;
   }
 
+
   public ContactData withAllEmail(String allEmail) {
     this.allEmail = allEmail;
     return this;
   }
-
+  @Transient
   private String allEmail;
 
   public String getAllPhones() {
